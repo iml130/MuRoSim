@@ -1,0 +1,40 @@
+# System packages for MuRoSim (Debian / Ubuntu names).
+#
+# Install with:
+#   sudo apt install $(grep -vE '^#|^$' dependencies.txt | tr '\n' ' ')
+#
+# Version requirements that a package name cannot express:
+#   cmake        >= 3.24   the root build uses FetchContent's
+#                          OVERRIDE_FIND_PACKAGE to pin pybind11 v3.1.0
+#   libboost-dev >= 1.70   find_package(Boost CONFIG) resolves upstream's
+#                          BoostConfig.cmake
+#
+# Ubuntu 24.04 satisfies both (CMake 3.28, Boost 1.83) and ships Python 3.12,
+# the minimum for the Python bindings. Ubuntu 22.04 ships CMake 3.22 and
+# Python 3.10 and needs newer ones first: `pip install cmake` or Kitware's APT
+# repository for CMake, the deadsnakes PPA or conda for Python 3.12.
+#
+# pybind11 is deliberately not a system package: the root CMakeLists fetches
+# and pins pybind11 v3.1.0 (system versions caused random segfaults with some
+# numpy/Python combinations).
+
+# Build tools (make comes with build-essential; cmake_build.py and the
+# documented builds use the default generator, and `-j` parallelises it)
+build-essential
+cmake
+pkg-config
+
+# Python bindings (pybind11 itself is fetched at configure time)
+python3-dev
+
+# Core libraries
+libeigen3-dev
+libboost-dev
+
+# Rendering (online GLFW renderer + offline EGL renderer)
+libglfw3-dev
+libegl-dev
+libgles-dev
+
+# C++ tests only (BUILD_TESTING=ON)
+libgtest-dev

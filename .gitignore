@@ -1,0 +1,37 @@
+# Build artifacts
+build/
+build-*/
+cmake-build-*/
+_skbuild/
+compile_commands.json
+
+# C++ compiled objects / libraries
+*.o
+*.a
+*.so
+*.so.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+*.whl
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# IDEs & editors
+.vscode/
+.idea/
+*.user
+*.swp
+*~
+
+# OS generated
+.DS_Store
+Thumbs.db
+

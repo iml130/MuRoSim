@@ -1,0 +1,82 @@
+# Copyright Fraunhofer IML
+#
+# Licensed under the MIT License.
+# For details on the licensing terms, see the LICENSE file.
+# SPDX-License-Identifier: MIT
+
+cff-version: 1.2.0
+message: "If you use MuRoSim in your research, please cite the ICRA 2024 paper below."
+title: "MuRoSim"
+abstract: "A fast multi-robot simulator written in C++20 with Python bindings, built for large-scale reinforcement learning of mobile robot navigation."
+type: software
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/iml130/MuRoSim"
+keywords:
+  - robotics
+  - simulation
+  - multi-robot
+  - reinforcement learning
+  - navigation
+authors:
+  - given-names: Christian
+    family-names: Jestel
+    affiliation: "Fraunhofer Institute for Material Flow and Logistics IML"
+preferred-citation:
+  type: conference-paper
+  title: "MuRoSim – A Fast and Efficient Multi-Robot Simulation for Learning-based Navigation"
+  authors:
+    - given-names: Christian
+      family-names: Jestel
+    - given-names: Karol
+      family-names: Rösner
+    - given-names: Niklas
+      family-names: Dietz
+    - given-names: Nicolas
+      family-names: Bach
+    - given-names: Julian
+      family-names: Eßer
+    - given-names: Jan
+      family-names: Finke
+    - given-names: Oliver
+      family-names: Urbann
+  collection-title: "2024 IEEE International Conference on Robotics and Automation (ICRA)"
+  conference:
+    name: "2024 IEEE International Conference on Robotics and Automation (ICRA)"
+    city: Yokohama
+    country: JP
+  publisher:
+    name: IEEE
+  year: 2024
+  month: 5
+  start: 16881
+  end: 16887
+  doi: "10.1109/ICRA57147.2024.10610375"
+  url: "https://ieeexplore.ieee.org/document/10610375"
+references:
+  - type: conference-paper
+    title: "Beyond Specialization: Robust Reinforcement Learning Navigation Via Procedural Map Generators"
+    notes: "Procedural map generators (murosimproc)"
+    authors:
+      - given-names: Christian
+        family-names: Jestel
+      - given-names: Nicolas
+        family-names: Bach
+      - given-names: Marvin
+        family-names: Wiedemann
+      - given-names: Jan
+        family-names: Finke
+      - given-names: Peter
+        family-names: Detzner
+    collection-title: "2026 IEEE 31st International Conference on Emerging Technologies and Factory Automation (ETFA)"
+    conference:
+      name: "2026 IEEE 31st International Conference on Emerging Technologies and Factory Automation (ETFA)"
+      city: Västerås
+      country: SE
+    publisher:
+      name: IEEE
+    year: 2026
+    month: 9
+    start: 1
+    end: 8
+    doi: "10.1109/ETFA68377.2026.11725096"

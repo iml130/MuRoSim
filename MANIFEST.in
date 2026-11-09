@@ -1,0 +1,20 @@
+# The sdist must carry the whole C++ tree: `pip install` from an sdist runs the
+# full CMake build, not just a copy of prebuilt modules.
+
+include VERSION
+include LICENSE
+include THIRD_PARTY_LICENSES.md
+include README.md
+include dependencies.txt
+include CMakeLists.txt
+include cmake_build.py
+
+recursive-include cmake *.cmake *.in
+recursive-include stubs *.pyi
+include tools/generate_stubs.py
+recursive-include murosim CMakeLists.txt *.cpp *.hpp
+recursive-include murosimrl CMakeLists.txt *.cpp *.hpp
+recursive-include murosimproc CMakeLists.txt *.cpp *.hpp
+
+prune build
+global-exclude __pycache__ *.py[cod]

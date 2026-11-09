@@ -1,0 +1,67 @@
+# Copyright Fraunhofer IML
+#
+# Licensed under the MIT License.
+# For details on the licensing terms, see the LICENSE file.
+# SPDX-License-Identifier: MIT
+
+# The steps live in ci/*.sh; this file only calls them.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CMAKE_BUILD_PARALLEL_LEVEL: 4
+
+jobs:
+  cpp:
+    name: C++ (bindings ${{ matrix.bindings }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        bindings: [OFF, ON]
+    steps:
+      - uses: actions/checkout@v4
+      - run: ci/install_deps.sh
+      - run: ci/cpp.sh ${{ matrix.bindings }}
+
+  cpp-debug:
+    name: C++ (Debug, asserts on)
+    runs-on: ubuntu-24.04
+    env:
+      BUILD_TYPE: Debug
+    steps:
+      - uses: actions/checkout@v4
+      - run: ci/install_deps.sh
+      - run: ci/cpp.sh OFF
+
+  cpp-clang:
+    name: C++ (Clang)
+    runs-on: ubuntu-24.04
+    env:
+      CC: clang
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v4
+      - run: ci/install_deps.sh
+      - run: sudo apt-get install -y --no-install-recommends clang
+      - run: ci/cpp.sh OFF
+
+  python:
+    name: Python (pip install, sdist)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: ci/install_deps.sh
+      - run: ci/python.sh

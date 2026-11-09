@@ -1,0 +1,56 @@
+# Copyright Fraunhofer IML
+#
+# Licensed under the MIT License.
+# For details on the licensing terms, see the LICENSE file.
+# SPDX-License-Identifier: MIT
+
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "murosim"
+# Single source of truth: the VERSION file at the repository root, which the
+# CMake build reads as well (see cmake/MuRoSimVersion.cmake).
+dynamic = ["version"]
+description = "Python bindings for MuRoSim multi-robot simulator"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_LICENSES.md"]
+authors = [
+    {name = "Christian Jestel", email = "christian.jestel@iml.fraunhofer.de"}
+]
+requires-python = ">=3.12"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: C++",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering",
+    "Typing :: Typed",
+]
+keywords = ["robotics", "simulation", "multi-robot", "reinforcement-learning", "pybind11"]
+# The extension modules convert to/from numpy arrays (pybind11/numpy.h); numpy is
+# loaded lazily, so `import murosimpy` works without it but any array call fails.
+# 1.26 is the first numpy release for Python 3.12, the oldest supported Python.
+dependencies = ["numpy>=1.26"]
+
+[project.optional-dependencies]
+dev = ["pybind11-stubgen>=3", "pytest", "build"]
+
+[project.urls]
+Homepage = "https://github.com/iml130/MuRoSim"
+Documentation = "https://github.com/iml130/MuRoSim#readme"
+Repository = "https://github.com/iml130/MuRoSim"
+Issues = "https://github.com/iml130/MuRoSim/issues"
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests/python"]
+addopts = "-p no:cacheprovider"
